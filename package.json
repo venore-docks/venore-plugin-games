@@ -1,0 +1,34 @@
+{
+  "name": "@venore/plugin-games",
+  "version": "0.1.0",
+  "description": "Games — competições escolares no Venore Docks: campeonatos (futsal, vôlei…) e olimpíadas com várias modalidades e quadro geral, jogo ao vivo (controle, overlay OBS, TV), votação da torcida e blocos de página.",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./manifest": "./manifest.ts",
+    "./route-table": "./routes/route-table.ts",
+    "./contributions": "./contributions.ts",
+    "./migrations/*": "./migrations/*",
+    "./package.json": "./package.json"
+  },
+  "//": "@venore/plugin-sdk NÃO é dependência — resolve pelo alias de tsconfig do host (src/sdk).",
+  "//sharp": "sharp converte as imagens geradas (capa/story) pra JPEG; o Next já o instala como optionalDependency. Sem ele saem PNG.",
+  "peerDependencies": {
+    "drizzle-orm": ">=0.45",
+    "next": ">=16",
+    "react": ">=19",
+    "sharp": ">=0.33"
+  },
+  "peerDependenciesMeta": {
+    "sharp": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "uqr": "^0.1.3"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.10"
+  }
+}
