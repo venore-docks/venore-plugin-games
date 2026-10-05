@@ -16,13 +16,14 @@ export function useLiveState(initial: LiveMatchState, options: { channelKey: str
   const [online, setOnline] = useState(true);
   // Diferença servidor − cliente: relógio e destaque de ponto usam o "agora" do servidor.
   const [clockOffsetMs, setClockOffsetMs] = useState(() => initial.serverNow - Date.now());
-  const lastDataAt = useRef(Date.now());
+  const lastDataAt = useRef(0);
 
   useEffect(() => {
     let cancelled = false;
     let source: EventSource | null = null;
     let pollTimer: ReturnType<typeof setInterval> | null = null;
     const query = `?canal=${encodeURIComponent(options.channelKey)}`;
+    lastDataAt.current = Date.now();
 
     const accept = (next: LiveMatchState) => {
       if (cancelled) return;
