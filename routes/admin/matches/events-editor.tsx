@@ -71,7 +71,7 @@ export function EventsEditor({
         </ul>
       )}
 
-      <form onSubmit={add} className="grid gap-3 rounded-lg border border-dashed border-border p-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_6rem_1.4fr_auto] lg:items-end">
+      <form onSubmit={add} className="grid *:min-w-0 gap-3 rounded-lg border border-dashed border-border p-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_6rem_1.4fr_auto] lg:items-end">
         <Field label="Equipe" htmlFor="event-side">
           <select
             id="event-side"

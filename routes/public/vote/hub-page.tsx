@@ -52,7 +52,7 @@ export default async function VoteHubPage() {
         {openMatches.length === 0 ? (
           <EmptyNote>Nenhuma votação aberta agora. A votação de cada jogo abre quando ele começa.</EmptyNote>
         ) : (
-          <div className="grid gap-3 @xl:grid-cols-2 @4xl:grid-cols-3">
+          <div className="grid *:min-w-0 gap-3 @xl:grid-cols-2 @4xl:grid-cols-3">
             {openMatches.map(({ poll, match }) => (
               <MatchVoteCard key={poll.id} snapshot={snapshot} match={match} tallies={tallies.get(poll.id)} />
             ))}
@@ -80,7 +80,7 @@ export default async function VoteHubPage() {
       {recentResults.length > 0 && (
         <section>
           <SectionHeader title="Resultados recentes" />
-          <ul className="grid gap-2 @xl:grid-cols-2">
+          <ul className="grid *:min-w-0 gap-2 @xl:grid-cols-2">
             {recentResults.map((match) => {
               const winners = (fanAwards.get(match.id) ?? []).map((id) => index.athletes.get(id)).filter((athlete) => athlete !== undefined);
               const team = winners[0] ? index.participants.get(winners[0].participantId) : undefined;

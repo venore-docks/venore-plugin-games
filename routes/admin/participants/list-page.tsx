@@ -55,7 +55,7 @@ export default async function AdminParticipantsPage() {
           }
         />
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className="grid *:min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {snapshot.participants.map((participant) => {
             const athleteCount = index.athletesByParticipant.get(participant.id)?.length ?? 0;
             const modalities = modalitiesByParticipant.get(participant.id) ?? [];

@@ -85,14 +85,14 @@ export function ResultForm({
 
       {usesSets ? (
         <div className="space-y-2">
-          <div className="grid grid-cols-[3rem_1fr_1fr_2rem] items-center gap-2 text-xs font-medium text-muted-foreground">
+          <div className="grid *:min-w-0 grid-cols-[3rem_1fr_1fr_2rem] items-center gap-2 text-xs font-medium text-muted-foreground">
             <span>Set</span>
             <span className="truncate">{home.name}</span>
             <span className="truncate">{away.name}</span>
             <span />
           </div>
           {sets.map((set, index) => (
-            <div key={index} className="grid grid-cols-[3rem_1fr_1fr_2rem] items-center gap-2">
+            <div key={index} className="grid *:min-w-0 grid-cols-[3rem_1fr_1fr_2rem] items-center gap-2">
               <span className="text-sm font-semibold tabular-nums text-muted-foreground">{index + 1}º</span>
               <Input type="number" min={0} inputMode="numeric" value={set.home} onChange={(event) => setSets(sets.map((s, i) => (i === index ? { ...s, home: event.target.value } : s)))} aria-label={`Set ${index + 1} — ${home.name}`} />
               <Input type="number" min={0} inputMode="numeric" value={set.away} onChange={(event) => setSets(sets.map((s, i) => (i === index ? { ...s, away: event.target.value } : s)))} aria-label={`Set ${index + 1} — ${away.name}`} />
@@ -106,7 +106,7 @@ export function ResultForm({
           </Button>
         </div>
       ) : (
-        <div className="grid grid-cols-[1fr_auto_1fr] items-end gap-3">
+        <div className="grid *:min-w-0 grid-cols-[1fr_auto_1fr] items-end gap-3">
           <Field label={home.name} htmlFor="result-home">
             <Input id="result-home" type="number" min={0} step={step} inputMode="decimal" value={homeScore} onChange={(event) => setHomeScore(event.target.value)} disabled={hasScoringEvents} className="h-12 text-center text-2xl font-semibold tabular-nums" />
           </Field>
@@ -117,7 +117,7 @@ export function ResultForm({
         </div>
       )}
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid *:min-w-0 gap-3 sm:grid-cols-2">
         <Field label="Vencedor no desempate" hint={isKnockout ? "Obrigatório em mata-mata empatado (pênaltis)." : "Só se o jogo precisou de desempate."} htmlFor="result-winner">
           <select id="result-winner" className={nativeSelectClass} value={decidedWinnerId} onChange={(event) => setDecidedWinnerId(event.target.value)}>
             <option value="">Nenhum (pelo placar)</option>

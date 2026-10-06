@@ -10,6 +10,7 @@ import { Crest, TeamStripe } from "../components/crest";
 import { LiveBadge } from "../components/live-badge";
 import { LiveScore } from "../components/live-score";
 import { MatchCard } from "../components/match-card";
+import { formatMatchDate } from "../shared/timezone";
 import { AddToCalendar } from "../components/add-to-calendar";
 import { StatTile } from "../components/stat-tile";
 import { matchCalendarLinks } from "../components/lib/calendar-events";
@@ -129,7 +130,7 @@ export async function HeroSection({
     <BlockFrame>
       <div className="overflow-hidden rounded-panel bg-primary text-primary-foreground shadow-panel">
         <div
-          className="grid gap-6 p-5 @md:p-8 @4xl:grid-cols-[1fr_minmax(0,26rem)] @4xl:items-center"
+          className="grid *:min-w-0 gap-6 p-5 @md:p-8 @4xl:grid-cols-[1fr_minmax(0,26rem)] @4xl:items-center"
           style={{ backgroundImage: "radial-gradient(circle at 90% 10%, color-mix(in oklch, var(--accent) 55%, transparent), transparent 55%)" }}
         >
           <div className="space-y-4">
@@ -159,10 +160,15 @@ export async function HeroSection({
           </div>
           {match && (
             <div className="rounded-panel bg-card p-1 text-card-foreground">
+              {/* Rótulo acima do card: "Ao vivo"/"Próximo jogo · Hoje 15:00". A data absoluta já está no card,
+                  então só repete quando o rótulo relativo diz algo a mais (hoje, amanhã, em N dias). */}
+              <p className="px-3 pt-2 text-xs font-bold uppercase tracking-caps text-muted-foreground">
+                {match.status === "live" ? "Ao vivo agora" : "Próximo jogo"}
+                {match.status === "scheduled" && relativeMatchLabel(match.scheduledDate, match.scheduledTime, now) !== formatMatchDate(match.scheduledDate, match.scheduledTime)
+                  ? ` · ${relativeMatchLabel(match.scheduledDate, match.scheduledTime, now)}`
+                  : ""}
+              </p>
               <MatchCard snapshot={snapshot} match={match} live={liveIslandFor(snapshot, match)} calendar={matchCalendarLinks(snapshot, match, await loadOrigin(), now)} className="border-0 shadow-none" />
-              {match.status === "scheduled" && (
-                <p className="px-3 pb-2 text-center text-xs font-semibold text-muted-foreground">{relativeMatchLabel(match.scheduledDate, match.scheduledTime, now)}</p>
-              )}
             </div>
           )}
         </div>
@@ -210,7 +216,7 @@ export async function TeamSpotlightBlock({ block, mode }: BlockRendererProps) {
       {title && <SectionHeader title={title} />}
       <div className="overflow-hidden rounded-panel border border-border bg-card shadow-panel">
         <TeamStripe primary={participant.primaryColor} secondary={participant.secondaryColor} className="h-2" />
-        <div className="grid gap-4 p-4 @2xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] @md:p-6">
+        <div className="grid *:min-w-0 gap-4 p-4 @2xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] @md:p-6">
           <div className="flex flex-col gap-4">
             <Link href={PATHS.participant(participant.slug)} className="flex items-center gap-3 rounded-xl ui-motion-base hover:opacity-85">
               <Crest name={participant.name} crestUrl={participant.crestUrl} color={participant.primaryColor} size="xl" />
@@ -223,7 +229,7 @@ export async function TeamSpotlightBlock({ block, mode }: BlockRendererProps) {
               </span>
             </Link>
             {record.played > 0 && (
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid *:min-w-0 grid-cols-4 gap-2">
                 <StatTile label="Jogos" value={record.played} />
                 <StatTile label="V" value={record.won} />
                 <StatTile label="E" value={record.drawn} />

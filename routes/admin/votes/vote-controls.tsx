@@ -112,7 +112,7 @@ export function VoteSettingsForm({ initial }: { initial: VoteSettingsValues }) {
 
   return (
     <form onSubmit={submit} className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid *:min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SETTING_FIELDS.map((field) => (
           <Field key={field.key} label={field.label} hint={field.hint} htmlFor={`vote-${field.key}`}>
             <Input

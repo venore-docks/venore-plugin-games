@@ -19,7 +19,7 @@ export function GeneralSettingsForm({ initial }: { initial: { accentColor: strin
 
   return (
     <form onSubmit={submit} className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid *:min-w-0 gap-4 sm:grid-cols-3">
         <Field label="Cor de destaque" hint="Placar do OBS, TV e controle (fora do tema do site)." htmlFor="settings-accent">
           <div className="flex items-center gap-2">
             <input

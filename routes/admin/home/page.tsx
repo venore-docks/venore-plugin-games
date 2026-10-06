@@ -66,14 +66,14 @@ export default async function AdminHomePage() {
         </Button>
       }
     >
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+      <div className="grid *:min-w-0 grid-cols-2 gap-3 md:grid-cols-4">
         <AdminStatTile label="Modalidades" value={snapshot.modalities.length} hint={`${snapshot.modalities.filter((m) => m.status === "finished").length} finalizada(s)`} />
         <AdminStatTile label="Equipes" value={snapshot.participants.length} />
         <AdminStatTile label="Atletas" value={snapshot.athletes.length} />
         <AdminStatTile label="Jogos" value={snapshot.matches.length} hint={`${finishedCount} encerrado(s)`} />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid *:min-w-0 gap-4 lg:grid-cols-2">
         <Section title="Ao vivo agora" icon={<Radio />} description={live.length === 0 ? "Nenhum jogo em andamento." : undefined}>
           {live.length > 0 && <MatchList matches={live} index={index} />}
         </Section>
@@ -119,7 +119,7 @@ export default async function AdminHomePage() {
               </div>
             );
           })}
-          <div className="grid gap-2 sm:grid-cols-3">
+          <div className="grid *:min-w-0 gap-2 sm:grid-cols-3">
             <ScreenLink icon={<Tv aria-hidden />} label="TV (placar + agenda)" href={PATHS.tv()} absolute={absolute(PATHS.tv())} />
             <ScreenLink icon={<Vote aria-hidden />} label="Overlay da votação" href={PATHS.voteOverlay()} absolute={absolute(PATHS.voteOverlay())} />
             <ScreenLink icon={<Tv aria-hidden />} label="TV da votação" href={PATHS.voteTv()} absolute={absolute(PATHS.voteTv())} />

@@ -15,7 +15,7 @@ export function PointsTableEditor({ value, onChange, disabled }: { value: number
 
   return (
     <div className="space-y-2">
-      <ol className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+      <ol className="grid *:min-w-0 grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
         {value.map((points, index) => (
           <li key={index} className="flex items-center gap-1.5">
             <span className="w-8 shrink-0 text-right text-xs font-semibold tabular-nums text-muted-foreground">{index + 1}º</span>

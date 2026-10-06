@@ -111,7 +111,7 @@ export function ScheduleForm({
 
   return (
     <form onSubmit={submit} className="space-y-4">
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid *:min-w-0 gap-3 sm:grid-cols-2">
         <Field label="Modalidade" htmlFor="schedule-modality">
           <select
             id="schedule-modality"
@@ -153,13 +153,13 @@ export function ScheduleForm({
         </Field>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid *:min-w-0 gap-3 sm:grid-cols-2">
         {sideSelect("home")}
         {sideSelect("away")}
       </div>
       {sidesLocked && <p className="text-xs text-muted-foreground">As equipes de um jogo já iniciado não mudam.</p>}
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="grid *:min-w-0 grid-cols-2 gap-3 sm:grid-cols-3">
         <Field label="Data" htmlFor="schedule-date">
           <Input id="schedule-date" type="date" value={draft.scheduledDate} onChange={(event) => set("scheduledDate", event.target.value)} />
         </Field>

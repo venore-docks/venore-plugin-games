@@ -28,7 +28,7 @@ export function CompetitionForm({ competition, logoMedia }: { competition: Compe
 
   return (
     <form onSubmit={submit} className="space-y-5">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid *:min-w-0 gap-4 md:grid-cols-2">
         <Field label="Nome" htmlFor="competition-name">
           <Input id="competition-name" value={name} onChange={(event) => setName(event.target.value)} maxLength={80} required />
         </Field>
@@ -38,7 +38,7 @@ export function CompetitionForm({ competition, logoMedia }: { competition: Compe
         <Textarea id="competition-description" value={description} onChange={(event) => setDescription(event.target.value)} rows={3} maxLength={2000} />
       </Field>
 
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className="grid *:min-w-0 gap-3 md:grid-cols-2">
         <label className="flex items-start gap-3 rounded-lg border border-border p-3">
           <Switch checked={overallEnabled} onCheckedChange={setOverallEnabled} className="mt-0.5" />
           <span className="text-sm">

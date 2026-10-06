@@ -52,7 +52,7 @@ export function ModalityStages({
               const groups = stageStandings(snapshot, modality, stage).filter((group) => group.rows.length > 0);
               if (groups.length === 0) return <EmptyNote>Grupos ainda não definidos.</EmptyNote>;
               return (
-                <div className="grid gap-3 @3xl:grid-cols-2">
+                <div className="grid *:min-w-0 gap-3 @3xl:grid-cols-2">
                   {groups.map((group) => (
                     <StandingsTable
                       key={group.groupId}

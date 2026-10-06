@@ -52,7 +52,7 @@ export default async function AdminVotesPage({ searchParams }: { searchParams: S
 
   return (
     <AdminFrame active="votes" competitionName={snapshot.competition.name} title="Votação da torcida" description="Craque de cada jogo e equipe favorita — sem login, com espera acumulada por rede e auditoria.">
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className="grid *:min-w-0 gap-3 md:grid-cols-2">
         {turnstileOn ? (
           <Notice>
             <span className="flex items-center gap-2">
@@ -110,7 +110,7 @@ export default async function AdminVotesPage({ searchParams }: { searchParams: S
         {matchPolls.length === 0 ? (
           <p className="text-sm text-muted-foreground">Nenhuma votação de jogo ainda.</p>
         ) : (
-          <ul className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          <ul className="grid *:min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-3">
             {matchPolls.map(({ poll, match, window }) => {
               const home = match?.homeId ? index.participants.get(match.homeId)?.name : null;
               const away = match?.awayId ? index.participants.get(match.awayId)?.name : null;

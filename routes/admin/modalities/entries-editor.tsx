@@ -34,7 +34,7 @@ export function EntriesEditor({ modalityId, participants, initial, structureAppl
   if (participants.length === 0) return <Notice>Cadastre as equipes antes (menu Equipes).</Notice>;
 
   return (
-    <div className="grid gap-5 lg:grid-cols-2">
+    <div className="grid *:min-w-0 gap-5 lg:grid-cols-2">
       <div className="space-y-2">
         <div className="flex items-center justify-between gap-2">
           <p className="text-sm font-medium text-foreground">Equipes da competição</p>

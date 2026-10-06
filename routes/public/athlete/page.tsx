@@ -77,7 +77,7 @@ export default async function PublicAthletePage({ params }: Props) {
       </header>
 
       <section aria-label="Números">
-        <div className="grid grid-cols-2 gap-2 @md:grid-cols-4">
+        <div className="grid *:min-w-0 grid-cols-2 gap-2 @md:grid-cols-4">
           <StatTile label={scoreLabel} value={formatScore(scored)} />
           <StatTile label="Craque do jogo" value={mvpCount} />
           <StatTile label="Craque da torcida" value={fanCount} />
@@ -118,7 +118,7 @@ export default async function PublicAthletePage({ params }: Props) {
       {teamFinished.length > 0 && (
         <section>
           <SectionHeader title="Últimos jogos da equipe" />
-          <div className="grid gap-3 @xl:grid-cols-2">
+          <div className="grid *:min-w-0 gap-3 @xl:grid-cols-2">
             {teamFinished.slice(0, 4).map((match) => (
               <MatchCard key={match.id} snapshot={snapshot} match={match} />
             ))}

@@ -27,7 +27,7 @@ export default async function AdminCompetitionPage() {
         <CompetitionForm competition={competition} logoMedia={logoMedia} />
       </Section>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid *:min-w-0 gap-4 lg:grid-cols-2">
         <Section title="Canais ao vivo" icon={<Radio />} description="Cada canal é uma quadra/palco com o próprio jogo no overlay e no controle.">
           <ChannelsEditor channels={snapshot.channels} />
         </Section>

@@ -276,7 +276,7 @@ export default async function PublicMatchPage({ params }: Props) {
       <ShareBar url={`${origin}${PATHS.match(match.id)}`} text={shareText} storyImageUrl={match.storyImageUrl} storyFileName={`jogo-${match.id.slice(0, 8)}`} />
 
       {(mvp || poll) && (
-        <section className="grid gap-3 @lg:grid-cols-2" aria-label="Destaques do jogo">
+        <section className="grid *:min-w-0 gap-3 @lg:grid-cols-2" aria-label="Destaques do jogo">
           {mvp && (
             <Link href={PATHS.athlete(mvp.slug)} className="flex min-h-16 items-center gap-3 rounded-panel border border-warning-border bg-warning-soft p-3 ui-motion-base hover:border-ring">
               <AthletePhoto name={mvp.name} photoUrl={mvp.photoUrl} color={index.participants.get(mvp.participantId)?.primaryColor ?? null} size="lg" />
@@ -332,7 +332,7 @@ export default async function PublicMatchPage({ params }: Props) {
       {boosts.length > 0 && (
         <section className="space-y-3">
           <SectionTitle>Power plays</SectionTitle>
-          <ul className="grid gap-2 @md:grid-cols-2">
+          <ul className="grid *:min-w-0 gap-2 @md:grid-cols-2">
             {boosts.map((boost) => {
               const team = sideInfo(snapshot, match, boost.side);
               return (

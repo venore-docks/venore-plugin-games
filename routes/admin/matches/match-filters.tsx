@@ -27,7 +27,7 @@ export function MatchFilters({
   }
 
   return (
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3" aria-busy={pending}>
+    <div className="grid *:min-w-0 grid-cols-2 gap-2 sm:grid-cols-3" aria-busy={pending}>
       <select className={`${nativeSelectClass} col-span-2 sm:col-span-1`} value={current.modalidade} onChange={(event) => update({ modalidade: event.target.value })} aria-label="Modalidade">
         <option value="">Todas as modalidades</option>
         {modalities.map((modality) => (

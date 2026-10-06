@@ -59,7 +59,7 @@ export default async function AdminParticipantPage({ params }: { params: Promise
         )
       }
     >
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+      <div className="grid *:min-w-0 gap-4 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <Section title="Dados da equipe">
           <ParticipantForm participant={participant} crestMedia={crestMedia} />
         </Section>

@@ -64,7 +64,7 @@ export default async function AdminImportPage() {
 
   return (
     <AdminFrame active="import" competitionName={snapshot.competition.name} title="Importar" description="Planilha CSV (vírgula ou ponto e vírgula, UTF-8). Todas as linhas são conferidas antes: com qualquer erro, nada é gravado.">
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid *:min-w-0 gap-4 lg:grid-cols-2">
         <Section title="Equipes" icon={<Shield />} description="Cria as novas e atualiza as existentes (casadas pelo id ou pelo nome). Campo vazio não apaga nada; o brasão nunca muda pelo CSV.">
           <div className="space-y-4">
             <Example

@@ -70,7 +70,7 @@ export function CreateModalityButton({ label = "Nova modalidade" }: { label?: st
               ))}
             </select>
           </Field>
-          <div className="grid grid-cols-[4.5rem_1fr] gap-3">
+          <div className="grid *:min-w-0 grid-cols-[4.5rem_1fr] gap-3">
             <Field label="Emoji" htmlFor="modality-emoji">
               <Input id="modality-emoji" value={emoji} onChange={(event) => setEmoji(event.target.value)} maxLength={8} className="text-center text-lg" />
             </Field>

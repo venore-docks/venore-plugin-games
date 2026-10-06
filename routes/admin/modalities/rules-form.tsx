@@ -100,7 +100,7 @@ export function RulesForm({ modality, coverMedia, profileLocked }: { modality: M
     <form onSubmit={submit} className="space-y-6">
       <fieldset className="space-y-4">
         <legend className="text-sm font-semibold text-foreground">Identificação</legend>
-        <div className="grid grid-cols-[4.5rem_1fr] gap-3 md:grid-cols-[4.5rem_1fr_1fr]">
+        <div className="grid *:min-w-0 grid-cols-[4.5rem_1fr] gap-3 md:grid-cols-[4.5rem_1fr_1fr]">
           <Field label="Emoji" htmlFor="modality-emoji">
             <Input id="modality-emoji" value={emoji} onChange={(event) => setEmoji(event.target.value)} maxLength={8} className="text-center text-lg" />
           </Field>
@@ -152,7 +152,7 @@ export function RulesForm({ modality, coverMedia, profileLocked }: { modality: M
       {isMatch && (
         <fieldset className="space-y-4">
           <legend className="text-sm font-semibold text-foreground">Pontos na tabela</legend>
-          <div className="grid grid-cols-3 gap-3 sm:max-w-md">
+          <div className="grid *:min-w-0 grid-cols-3 gap-3 sm:max-w-md">
             <NumberField label="Vitória" value={rules.pointsWin} onChange={(value) => setRule("pointsWin", value)} min={0} max={100} />
             <NumberField label="Empate" value={rules.pointsDraw} onChange={(value) => setRule("pointsDraw", value)} min={0} max={100} />
             <NumberField label="Derrota" value={rules.pointsLoss} onChange={(value) => setRule("pointsLoss", value)} min={-100} max={100} />
@@ -199,7 +199,7 @@ export function RulesForm({ modality, coverMedia, profileLocked }: { modality: M
       {profile.clock.enabled && (
         <fieldset className="space-y-3">
           <legend className="text-sm font-semibold text-foreground">Relógio</legend>
-          <div className="grid grid-cols-2 gap-3 sm:max-w-sm">
+          <div className="grid *:min-w-0 grid-cols-2 gap-3 sm:max-w-sm">
             <NumberField label={`Minutos por ${profile.clock.periodLabel}`} value={rules.periodMinutes} onChange={(value) => setRule("periodMinutes", value)} min={0} max={120} />
             <NumberField label={`Nº de ${profile.clock.periodLabel}s`} value={rules.periodCount} onChange={(value) => setRule("periodCount", value)} min={0} max={8} />
           </div>
@@ -218,7 +218,7 @@ export function RulesForm({ modality, coverMedia, profileLocked }: { modality: M
       {profile.usesSets && (
         <fieldset className="space-y-3">
           <legend className="text-sm font-semibold text-foreground">Sets</legend>
-          <div className="grid grid-cols-3 gap-3 sm:max-w-md">
+          <div className="grid *:min-w-0 grid-cols-3 gap-3 sm:max-w-md">
             <NumberField label="Sets pra vencer" hint="Melhor de 3 = 2" value={rules.setsToWin} onChange={(value) => setRule("setsToWin", value)} min={1} max={5} />
             <NumberField label="Pontos por set" value={rules.pointsPerSet} onChange={(value) => setRule("pointsPerSet", value)} min={1} max={100} />
             <NumberField label="Tie-break" hint="Set decisivo" value={rules.tieBreakPoints} onChange={(value) => setRule("tieBreakPoints", value)} min={0} max={100} />
@@ -229,7 +229,7 @@ export function RulesForm({ modality, coverMedia, profileLocked }: { modality: M
       {profile.eventResult?.kind === "measure" && (
         <fieldset className="space-y-3">
           <legend className="text-sm font-semibold text-foreground">Medida</legend>
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid *:min-w-0 gap-3 sm:grid-cols-2">
             <Field label="Unidade" hint="Ex.: kg, R$, s, m." htmlFor="modality-unit">
               <Input id="modality-unit" value={rules.measureUnit} onChange={(event) => setRule("measureUnit", event.target.value)} maxLength={16} />
             </Field>
@@ -244,7 +244,7 @@ export function RulesForm({ modality, coverMedia, profileLocked }: { modality: M
 
       <fieldset className="space-y-4">
         <legend className="text-sm font-semibold text-foreground">Quadro geral</legend>
-        <div className="grid grid-cols-2 gap-3 sm:max-w-sm">
+        <div className="grid *:min-w-0 grid-cols-2 gap-3 sm:max-w-sm">
           <NumberField label="Peso" hint="Multiplica os pontos da colocação." value={weight} onChange={setWeight} min={0} max={100} step={0.1} />
           <NumberField label="Ordem" hint="Nas listas do site." value={sortOrder} onChange={setSortOrder} min={0} max={999} />
         </div>

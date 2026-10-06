@@ -270,7 +270,7 @@ function StagePanel({
     for (const group of stage.groups) for (const participantId of group.participantIds) groupOf[participantId] = group.name;
     return (
       <Section title={header} description={`Pontos corridos${stage.config.doubleRound === true ? " (ida e volta)" : ""} · ${stageMatches.length} jogo(s)`}>
-        <div className="grid gap-4 xl:grid-cols-2">
+        <div className="grid *:min-w-0 gap-4 xl:grid-cols-2">
           {standings.map((group) => {
             const locked = group.matches.some((match) => match.status === "live" || match.status === "finished");
             const others = Object.fromEntries(Object.entries(groupOf).filter(([, name]) => name !== group.groupName));

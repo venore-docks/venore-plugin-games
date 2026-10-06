@@ -33,7 +33,7 @@ export function ParticipantForm({ participant, crestMedia }: { participant: Part
 
   return (
     <form onSubmit={submit} className="space-y-5">
-      <div className="grid gap-4 sm:grid-cols-[1fr_8rem]">
+      <div className="grid *:min-w-0 gap-4 sm:grid-cols-[1fr_8rem]">
         <Field label="Nome da equipe" htmlFor="participant-name">
           <Input id="participant-name" value={draft.name} onChange={(event) => set("name", event.target.value)} maxLength={60} required placeholder="Ex.: 3º ano A" />
         </Field>
@@ -44,7 +44,7 @@ export function ParticipantForm({ participant, crestMedia }: { participant: Part
 
       <MediaPickerField name="crestMediaId" label="Brasão (opcional)" initialMedia={crestMedia} onSelect={(media) => set("crestMediaId", media?.id ?? null)} />
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid *:min-w-0 gap-4 sm:grid-cols-3">
         <Field label="Cor primária" htmlFor="participant-primary">
           <input
             id="participant-primary"

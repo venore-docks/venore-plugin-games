@@ -34,7 +34,7 @@ export function Schedule({
       label: group.label,
       badge: live > 0 ? "ao vivo" : String(group.matches.length),
       content: (
-        <div className="grid gap-3 @xl:grid-cols-2 @4xl:grid-cols-3">
+        <div className="grid *:min-w-0 gap-3 @xl:grid-cols-2 @4xl:grid-cols-3">
           {group.matches.map((match) => (
             <MatchCard
               key={match.id}

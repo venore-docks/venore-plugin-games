@@ -106,7 +106,7 @@ export function BoostsEditor({ boosts }: { boosts: PowerBoostView[] }) {
   return (
     <div className="space-y-4">
       {boosts.length > 0 ? (
-        <ul className="grid gap-2 sm:grid-cols-2">
+        <ul className="grid *:min-w-0 gap-2 sm:grid-cols-2">
           {boosts.map((boost) => (
             <li key={boost.id} className="flex items-start gap-3 rounded-lg border border-border p-3">
               <span className="text-2xl leading-none" aria-hidden>
@@ -149,7 +149,7 @@ export function BoostsEditor({ boosts }: { boosts: PowerBoostView[] }) {
 
       <form onSubmit={submit} className="space-y-3 rounded-lg border border-dashed border-border p-3">
         <p className="text-xs font-medium uppercase tracking-caps text-muted-foreground">{editingId ? "Editar power play" : "Novo power play"}</p>
-        <div className="grid grid-cols-[4.5rem_1fr] gap-2 sm:grid-cols-[4.5rem_1fr_6rem]">
+        <div className="grid *:min-w-0 grid-cols-[4.5rem_1fr] gap-2 sm:grid-cols-[4.5rem_1fr_6rem]">
           <Field label="Emoji" htmlFor="boost-emoji">
             <Input id="boost-emoji" value={draft.emoji} onChange={(event) => setDraft({ ...draft, emoji: event.target.value })} maxLength={8} className="text-center text-lg" />
           </Field>
@@ -215,7 +215,7 @@ export function AdjustmentsEditor({
 
   return (
     <div className="space-y-4">
-      <form onSubmit={submit} className="grid gap-3 rounded-lg border border-dashed border-border p-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_7rem_2fr_auto] lg:items-end">
+      <form onSubmit={submit} className="grid *:min-w-0 gap-3 rounded-lg border border-dashed border-border p-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_7rem_2fr_auto] lg:items-end">
         <Field label="Equipe" htmlFor="adj-participant">
           <select id="adj-participant" className={nativeSelectClass} value={participantId} onChange={(event) => setParticipantId(event.target.value)} required>
             <option value="">Escolha…</option>

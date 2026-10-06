@@ -121,7 +121,7 @@ export default async function AdminMatchPage({ params, searchParams }: PageProps
     >
       <Scoreboard match={match} homeName={sideName("home")} awayName={sideName("away")} index={index} />
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+      <div className="grid *:min-w-0 gap-4 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <div className="space-y-4">
           <Section title="Resultado" icon={<ClipboardList />} description="Súmula: lance ou corrija o resultado sem passar pelo ao vivo.">
             <ResultForm
@@ -254,7 +254,7 @@ function Scoreboard({ match, homeName, awayName, index }: { match: MatchView; ho
         </span>
         <MatchStatusBadge status={match.status} />
       </div>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+      <div className="grid *:min-w-0 grid-cols-[1fr_auto_1fr] items-center gap-3">
         <div className="flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:text-start">
           <Crest name={homeName} url={home?.crestUrl ?? null} color={home?.primaryColor} size="lg" />
           <span className="line-clamp-2 text-sm font-semibold text-foreground sm:text-base">{homeName}</span>

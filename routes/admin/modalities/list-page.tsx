@@ -40,7 +40,7 @@ export default async function AdminModalitiesPage() {
           action={<CreateModalityButton label="Criar primeira modalidade" />}
         />
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid *:min-w-0 gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {snapshot.modalities.map((modality) => {
             const profile = getSportProfile(modality.sportProfile);
             const counts = matchCounts.get(modality.id) ?? { total: 0, finished: 0 };
@@ -60,7 +60,7 @@ export default async function AdminModalitiesPage() {
                     </div>
                     <ModalityStatusBadge status={modality.status} />
                   </div>
-                  <dl className="grid grid-cols-3 gap-2 text-center">
+                  <dl className="grid *:min-w-0 grid-cols-3 gap-2 text-center">
                     <div className="rounded-lg bg-muted px-2 py-1.5">
                       <dt className="text-[11px] text-muted-foreground">Inscritas</dt>
                       <dd className="text-sm font-semibold tabular-nums text-foreground">{modality.entries.length}</dd>

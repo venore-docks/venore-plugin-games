@@ -149,7 +149,7 @@ export function StageResultsEditor({
           const judges = kind === "score" ? parseJudges(draft.judges) : [];
           const average = judges.length > 0 ? judges.reduce((sum, value) => sum + value, 0) / judges.length : null;
           return (
-            <li key={participant.id} className="grid gap-2 rounded-lg border border-border p-3 md:grid-cols-[minmax(0,1fr)_8rem_minmax(0,1.3fr)_minmax(0,1fr)] md:items-center">
+            <li key={participant.id} className="grid *:min-w-0 gap-2 rounded-lg border border-border p-3 md:grid-cols-[minmax(0,1fr)_8rem_minmax(0,1.3fr)_minmax(0,1fr)] md:items-center">
               <span className="flex min-w-0 items-center gap-2">
                 <Crest name={participant.name} url={participant.crestUrl} color={participant.primaryColor} size="sm" />
                 <span className="truncate text-sm font-medium text-foreground">{participant.name}</span>

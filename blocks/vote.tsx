@@ -29,7 +29,7 @@ export async function VoteCtaSection({ snapshot, title, subtitle }: { snapshot: 
   return (
     <BlockFrame>
       <SectionHeader title={title} subtitle={subtitle || undefined} action={{ href: PATHS.vote(), label: "Todas as votações" }} />
-      <div className="grid gap-3 @2xl:grid-cols-2">
+      <div className="grid *:min-w-0 gap-3 @2xl:grid-cols-2">
         {openMatch && <MatchVoteCard snapshot={snapshot} match={openMatch.match} tallies={tallies.get(openMatch.poll.id)} />}
         {favorite && favoriteOpen && (
           <div className="flex flex-col gap-3 rounded-panel border border-border bg-card p-3 shadow-panel @sm:p-4">

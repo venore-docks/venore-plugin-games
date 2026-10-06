@@ -71,7 +71,7 @@ export function FormatEditor({
 
       <div className="space-y-2">
         <p className="text-sm font-medium text-foreground">Formatos prontos</p>
-        <div className="grid gap-2 sm:grid-cols-2">
+        <div className="grid *:min-w-0 gap-2 sm:grid-cols-2">
           {builtins.map((template) => {
             const active = choice.kind === "builtin" && choice.key === template.key;
             return (
@@ -96,7 +96,7 @@ export function FormatEditor({
       {saved.length > 0 && (
         <div className="space-y-2">
           <p className="text-sm font-medium text-foreground">Templates salvos</p>
-          <ul className="grid gap-2 sm:grid-cols-2">
+          <ul className="grid *:min-w-0 gap-2 sm:grid-cols-2">
             {saved.map((template) => {
               const active = choice.kind === "saved" && choice.id === template.id;
               return (
@@ -125,7 +125,7 @@ export function FormatEditor({
       )}
 
       {choice.kind === "builtin" && choice.key !== "single_event" && (
-        <div className="grid gap-3 rounded-lg border border-border p-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid *:min-w-0 gap-3 rounded-lg border border-border p-3 sm:grid-cols-2 lg:grid-cols-4">
           {choice.key === "groups_knockout" && (
             <>
               {intField("groupCount", "Grupos", 1, 26)}
@@ -200,7 +200,7 @@ function PreviewPanel({ preview }: { preview: StructurePreview }) {
               </span>
             </p>
             {stage.type === "round_robin" && (
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid *:min-w-0 gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 {stage.groups.map((group) => (
                   <div key={group.name} className="rounded-md bg-muted p-2">
                     <p className="text-xs font-semibold text-foreground">

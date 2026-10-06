@@ -196,7 +196,7 @@ export function PhotoPanel({
       )}
 
       {coverImageUrl || storyImageUrl ? (
-        <div className="grid grid-cols-[minmax(0,16fr)_minmax(0,5fr)] items-start gap-3">
+        <div className="grid *:min-w-0 grid-cols-[minmax(0,16fr)_minmax(0,5fr)] items-start gap-3">
           {coverImageUrl && (
             <figure className="space-y-1.5">
               {/* eslint-disable-next-line @next/next/no-img-element */}

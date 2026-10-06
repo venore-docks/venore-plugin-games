@@ -66,7 +66,7 @@ export default async function PublicModalityPage({ params }: Props) {
       {placements.length > 0 && (
         <section>
           <SectionHeader title="Colocação final" />
-          <ol className="grid gap-2 @md:grid-cols-2 @3xl:grid-cols-3">
+          <ol className="grid *:min-w-0 gap-2 @md:grid-cols-2 @3xl:grid-cols-3">
             {placements.map((placement) => {
               const participant = index.participants.get(placement.participantId);
               if (!participant) return null;
@@ -99,7 +99,7 @@ export default async function PublicModalityPage({ params }: Props) {
       {results.length > 0 && (
         <section>
           <SectionHeader title="Resultados" />
-          <div className="grid gap-3 @xl:grid-cols-2 @4xl:grid-cols-3">
+          <div className="grid *:min-w-0 gap-3 @xl:grid-cols-2 @4xl:grid-cols-3">
             {results.map((match) => (
               <MatchCard key={match.id} snapshot={snapshot} match={match} showModality={false} />
             ))}
@@ -108,7 +108,7 @@ export default async function PublicModalityPage({ params }: Props) {
       )}
 
       {(scorers.length > 0 || mvps.length > 0) && (
-        <section className="grid gap-6 @3xl:grid-cols-2">
+        <section className="grid *:min-w-0 gap-6 @3xl:grid-cols-2">
           {scorers.length > 0 && (
             <div>
               <SectionHeader title={profile.scoreUnit.plural === "gols" ? "Artilharia" : "Pontuadores"} />

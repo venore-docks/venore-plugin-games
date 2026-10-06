@@ -23,7 +23,7 @@ function ModalityPositions({ snapshot, participant }: { snapshot: CompetitionSna
   const enrolled = snapshot.modalities.filter((modality) => modality.entries.some((entry) => entry.participantId === participant.id));
   if (enrolled.length === 0) return <EmptyNote>Esta equipe ainda não está inscrita em nenhuma modalidade.</EmptyNote>;
   return (
-    <ul className="grid gap-2 @md:grid-cols-2">
+    <ul className="grid *:min-w-0 gap-2 @md:grid-cols-2">
       {enrolled.map((modality) => {
         const placement = modalityPlacements(snapshot, modality).find((item) => item.participantId === participant.id);
         const complete = isModalityComplete(snapshot, modality);
@@ -98,7 +98,7 @@ export default async function PublicParticipantPage({ params }: Props) {
 
       {hasMatches && (
         <section aria-label="Recorde">
-          <div className="grid grid-cols-3 gap-2 @md:grid-cols-6">
+          <div className="grid *:min-w-0 grid-cols-3 gap-2 @md:grid-cols-6">
             <StatTile label="Jogos" value={record.played} />
             <StatTile label="Vitórias" value={record.won} />
             <StatTile label="Empates" value={record.drawn} />
@@ -117,7 +117,7 @@ export default async function PublicParticipantPage({ params }: Props) {
       {upcoming.length > 0 && (
         <section>
           <SectionHeader title="Próximos jogos" />
-          <div className="grid gap-3 @xl:grid-cols-2">
+          <div className="grid *:min-w-0 gap-3 @xl:grid-cols-2">
             {upcoming.map((match) => (
               <MatchCard key={match.id} snapshot={snapshot} match={match} live={liveIslandFor(snapshot, match)} calendar={matchCalendarLinks(snapshot, match, origin, now)} />
             ))}
@@ -128,7 +128,7 @@ export default async function PublicParticipantPage({ params }: Props) {
       {recent.length > 0 && (
         <section>
           <SectionHeader title="Últimos jogos" />
-          <div className="grid gap-3 @xl:grid-cols-2">
+          <div className="grid *:min-w-0 gap-3 @xl:grid-cols-2">
             {recent.map((match) => (
               <MatchCard key={match.id} snapshot={snapshot} match={match} />
             ))}
@@ -141,7 +141,7 @@ export default async function PublicParticipantPage({ params }: Props) {
         {roster.length === 0 ? (
           <EmptyNote>Elenco ainda não cadastrado.</EmptyNote>
         ) : (
-          <ul className="grid grid-cols-2 gap-2 @md:grid-cols-3 @2xl:grid-cols-4">
+          <ul className="grid *:min-w-0 grid-cols-2 gap-2 @md:grid-cols-3 @2xl:grid-cols-4">
             {roster.map((athlete) => (
               <li key={athlete.id}>
                 <Link href={PATHS.athlete(athlete.slug)} className="flex min-h-full flex-col items-center gap-2 rounded-xl border border-border bg-card p-3 text-center ui-motion-base hover:border-ring">

@@ -43,7 +43,7 @@ export function AthleteForm({
 
   return (
     <form onSubmit={submit} className="space-y-5">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid *:min-w-0 gap-4 sm:grid-cols-2">
         <Field label="Equipe" htmlFor="athlete-participant">
           <select id="athlete-participant" className={nativeSelectClass} value={draft.participantId} onChange={(event) => set("participantId", event.target.value)} required>
             <option value="">Escolha…</option>
@@ -59,7 +59,7 @@ export function AthleteForm({
         </Field>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+      <div className="grid *:min-w-0 grid-cols-2 gap-4 sm:grid-cols-3">
         <Field label="Número" htmlFor="athlete-number">
           <Input id="athlete-number" type="number" inputMode="numeric" min={0} max={999} value={draft.number} onChange={(event) => set("number", event.target.value)} />
         </Field>

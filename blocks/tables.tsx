@@ -148,7 +148,7 @@ export function ModalitiesSection({ snapshot, title }: { snapshot: CompetitionSn
   return (
     <BlockFrame>
       <SectionHeader title={title} />
-      <ul className="grid grid-cols-1 gap-3 @md:grid-cols-2 @3xl:grid-cols-3">
+      <ul className="grid *:min-w-0 grid-cols-1 gap-3 @md:grid-cols-2 @3xl:grid-cols-3">
         {modalities.map((modality) => {
           const complete = isModalityComplete(snapshot, modality);
           const leader = modalityPlacements(snapshot, modality).find((placement) => placement.position === 1);
@@ -206,7 +206,7 @@ export function ParticipantsSection({ snapshot, title, showRecord }: { snapshot:
   return (
     <BlockFrame>
       <SectionHeader title={title} />
-      <ul className="grid grid-cols-2 gap-3 @lg:grid-cols-3 @3xl:grid-cols-4 @5xl:grid-cols-6">
+      <ul className="grid *:min-w-0 grid-cols-2 gap-3 @lg:grid-cols-3 @3xl:grid-cols-4 @5xl:grid-cols-6">
         {participants.map((participant) => {
           const record = showRecord ? participantRecord(snapshot, participant.id) : null;
           const position = overall?.get(participant.id);

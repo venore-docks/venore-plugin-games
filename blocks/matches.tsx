@@ -20,7 +20,7 @@ import { liveIslandFor, loadOrigin, loadSiteSnapshot, requestNow } from "../comp
 import { emptyState, missingModalityNote, NO_COMPETITION } from "./common";
 import { bool, href, int, modalityFilter, oneOf, text } from "./fields";
 
-const GRID = "grid gap-3 @xl:grid-cols-2 @4xl:grid-cols-3";
+const GRID = "grid *:min-w-0 gap-3 @xl:grid-cols-2 @4xl:grid-cols-3";
 
 // ---- Ao vivo ----
 
@@ -206,7 +206,7 @@ export async function MatchesGalleryBlock({ block, mode }: BlockRendererProps) {
     <BlockFrame>
       {missingModalityNote(mode, missing)}
       <SectionHeader title={title} />
-      <div className="grid gap-3 @md:grid-cols-2 @3xl:grid-cols-3 @5xl:grid-cols-4">
+      <div className="grid *:min-w-0 gap-3 @md:grid-cols-2 @3xl:grid-cols-3 @5xl:grid-cols-4">
         {matches.map((match) => (
           <GalleryCard key={match.id} snapshot={snapshot} match={match} />
         ))}
