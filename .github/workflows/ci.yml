@@ -1,0 +1,60 @@
+name: CI
+
+# Este plugin não roda sozinho: o `@venore/plugin-sdk` é um alias de tsconfig do host e as regras de
+# lint (cores só por token do tema, fronteiras entre módulos) moram no eslint.config.mjs do host.
+# Então a CI faz o que uma instância faz: baixa o venore-docks (main), instala ESTE checkout como o
+# pacote @venore/plugin-games e roda os checks do host em cima dele.
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do plugin
+        uses: actions/checkout@v4
+        with:
+          path: venore-plugin-games
+
+      - name: Checkout do host (venore-docks main)
+        uses: actions/checkout@v4
+        with:
+          repository: venore-docks/venore-docks
+          ref: main
+          path: venore-docks
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: venore-docks/package-lock.json
+
+      - name: Instala o host
+        working-directory: venore-docks
+        run: npm ci
+
+      # install-links=true no .npmrc do host: o plugin entra COPIADO em node_modules (igual à
+      # instalação por git na Vercel), com as dependências dele (uqr).
+      - name: Instala este plugin no host
+        working-directory: venore-docks
+        run: npm install --no-audit --no-fund ../venore-plugin-games
+
+      - name: Typecheck
+        working-directory: venore-docks
+        run: npm run typecheck
+
+      # O lint do host só olha src/ — o plugin entra numa pasta de src/plugins/ só pra este passo.
+      - name: Lint (regras do host)
+        working-directory: venore-docks
+        run: |
+          mkdir -p src/plugins/ci-games
+          tar -C ../venore-plugin-games --exclude=.git --exclude=node_modules --exclude=migrations -cf - . \
+            | tar -C src/plugins/ci-games -xf -
+          npx eslint --max-warnings 0 src/plugins/ci-games
+
+      # vitest.plugins.config.ts do host roda ../venore-plugin-<nome>/**/*.test.ts de cada plugin do
+      # package.json — este checkout é justamente esse caminho.
+      - name: Testes
+        working-directory: venore-docks
+        run: npm run test:plugins
