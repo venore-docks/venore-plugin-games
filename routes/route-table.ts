@@ -29,7 +29,7 @@ import { GET as liveStateGET } from "./api/live-state";
 import { GET as liveEventsGET } from "./api/live-events";
 import { GET as calendarFeedGET } from "./api/calendar-feed";
 import { GET as matchCalendarGET } from "./api/match-calendar";
-import { buildAthleteMetadata, buildMatchMetadata, buildParticipantMetadata, buildVoteHubMetadata, buildVoteMatchMetadata } from "./public/metadata";
+import { buildAthleteMetadata, buildMatchMetadata, buildModalityMetadata, buildParticipantMetadata, buildVoteHubMetadata, buildVoteMatchMetadata } from "./public/metadata";
 
 // generateMetadata declarado fora do literal (com tipo próprio, não asPluginMetadata): num core que
 // ainda não lê o campo, a entrada só carrega uma propriedade a mais e o plugin compila igual.
@@ -72,7 +72,7 @@ export const gamesRouteTable: PluginRouteTable = {
     withMetadata("jogos/:id", PublicMatchPage, async ({ params }) => buildMatchMetadata((await params).id)),
     withMetadata("equipes/:slug", PublicParticipantPage, async ({ params }) => buildParticipantMetadata((await params).slug)),
     withMetadata("atletas/:slug", PublicAthletePage, async ({ params }) => buildAthleteMetadata((await params).slug)),
-    { pattern: "modalidades/:slug", Component: asPluginPage(PublicModalityPage) },
+    withMetadata("modalidades/:slug", PublicModalityPage, async ({ params }) => buildModalityMetadata((await params).slug)),
     withMetadata("votar", VoteHubPage, async () => buildVoteHubMetadata()),
     { pattern: "votar/favorito", Component: asPluginPage(VoteFavoritePage) },
     withMetadata("votar/jogo/:id", VoteMatchPage, async ({ params }) => buildVoteMatchMetadata((await params).id)),
