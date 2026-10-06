@@ -16,6 +16,9 @@ export const gamesManifest: PluginManifest = {
   permissions: [
     { key: "games.manage", label: "Administrar competições, modalidades, equipes, jogos e votação" },
     { key: "games.operate", label: "Operar o jogo ao vivo (controle do placar)" },
+    // setSetting do host aceita "<namespace>.settings.manage" pras settings games.* (cor, canal do
+    // YouTube, competição ativa, custo do voto) sem exigir o settings.manage global.
+    { key: "games.settings.manage", label: "Configurações do plugin Games" },
   ],
 
   navigation: [
