@@ -37,6 +37,9 @@ import { fail, ok, type OperationResult } from "./result";
 //   versão do snapshot (senão o pico de votos recarregaria o site inteiro a cada voto).
 
 const VOTER_COOKIE = "games_voter";
+// Cookie do plugin anterior (Erasto League): mesmo formato de token e mesma derivação do voterKey,
+// então quem já votou lá continua reconhecido aqui depois da migração (runtime/migrate-erasto.ts).
+const LEGACY_VOTER_COOKIE = "erasto_league_voter";
 const VOTER_COOKIE_MAX_AGE_S = 400 * 24 * 60 * 60;
 
 function serverSecret(): string | null {
@@ -56,9 +59,16 @@ function isValidToken(token: string | undefined): token is string {
   return typeof token === "string" && /^[A-Za-z0-9_-]{32,64}$/.test(token);
 }
 
+function readToken(cookieStore: Awaited<ReturnType<typeof cookies>>): string | undefined {
+  const token = cookieStore.get(VOTER_COOKIE)?.value;
+  if (isValidToken(token)) return token;
+  const legacy = cookieStore.get(LEGACY_VOTER_COOKIE)?.value;
+  return isValidToken(legacy) ? legacy : undefined;
+}
+
 export async function readVoterKey(): Promise<string | null> {
-  const token = (await cookies()).get(VOTER_COOKIE)?.value;
-  return isValidToken(token) ? voterKeyFromToken(token) : null;
+  const token = readToken(await cookies());
+  return token ? voterKeyFromToken(token) : null;
 }
 
 type Identity = { voterKey: string; ipHash: string; uaHash: string | null };
@@ -66,8 +76,7 @@ type Identity = { voterKey: string; ipHash: string; uaHash: string | null };
 // Só em Server Action (cookies() gravável).
 async function ensureIdentity(secret: string): Promise<Identity> {
   const cookieStore = await cookies();
-  let token = cookieStore.get(VOTER_COOKIE)?.value;
-  if (!isValidToken(token)) token = randomBytes(24).toString("base64url");
+  const token = readToken(cookieStore) ?? randomBytes(24).toString("base64url");
   cookieStore.set(VOTER_COOKIE, token, { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", path: "/", maxAge: VOTER_COOKIE_MAX_AGE_S });
   const headerList = await headers();
   const ip = normalizeIpForGrouping(
