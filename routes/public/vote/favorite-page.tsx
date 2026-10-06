@@ -10,10 +10,8 @@ import { favoritePoll, loadOrigin, loadSiteSnapshot, loadTallies, loadTurnstileS
 import { Ballot } from "./ballot";
 import { choicesFromSections, participantBallotSections } from "./choices";
 
-type Props = { params: Promise<Record<string, string>>; searchParams: Promise<Record<string, string | string[] | undefined>> };
-
 // Equipe favorita (/votar/favorito): um voto por aparelho, que pode ser trocado enquanto aberta.
-export default async function VoteFavoritePage(_props: Props) {
+export default async function VoteFavoritePage() {
   const snapshot = await loadSiteSnapshot();
   if (!snapshot) notFound();
   const poll = favoritePoll(snapshot);

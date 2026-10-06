@@ -30,7 +30,7 @@ export function groupByRound(matches: MatchView[]): ScheduleGroup[] {
     group.matches.push(match);
     groups.set(key, group);
   });
-  return [...groups.values()].sort((a, b) => a.order - b.order).map(({ order: _order, ...group }) => group);
+  return [...groups.values()].sort((a, b) => a.order - b.order).map((group) => ({ key: group.key, label: group.label, matches: group.matches }));
 }
 
 export function defaultGroupKey(groups: ScheduleGroup[], now: number, mode: "day" | "round"): string | null {

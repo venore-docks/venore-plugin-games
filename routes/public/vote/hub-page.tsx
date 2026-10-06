@@ -11,11 +11,9 @@ import { joinNames, matchTitle, modalityLabel } from "../../../components/lib/ma
 import { favoritePoll, loadFanAwards, loadSiteSnapshot, loadTallies, pollStates } from "../../../components/site-data";
 import { choicesFromSections, participantBallotSections } from "./choices";
 
-type Props = { params: Promise<Record<string, string>>; searchParams: Promise<Record<string, string | string[] | undefined>> };
-
 // Hub da votação (/votar): jogos com votação aberta, equipe favorita (parcial) e resultados recentes
 // do craque da torcida.
-export default async function VoteHubPage(_props: Props) {
+export default async function VoteHubPage() {
   const snapshot = await loadSiteSnapshot();
   if (!snapshot) notFound();
   const index = indexes(snapshot);

@@ -173,6 +173,7 @@ export async function releaseChannel(competitionId: string, channelId: string): 
     const [current] = await tx.select({ status: matches.status }).from(matches).where(eq(matches.id, channel.currentMatchId));
     if (current?.status === "live") return;
     await tx.update(liveChannels).set({ currentMatchId: null, version: channel.version + 1, updatedAt: new Date() }).where(eq(liveChannels.id, channelId));
+    await bumpDataVersion(tx, competitionId);
   });
   return ok(undefined);
 }
@@ -181,7 +182,10 @@ export async function setChannelTeaser(competitionId: string, channelId: string,
   const text = teaser?.trim().slice(0, TEASER_MAX) || null;
   const [channel] = await db.select().from(liveChannels).where(and(eq(liveChannels.id, channelId), eq(liveChannels.competitionId, competitionId)));
   if (!channel) return fail("games.channel.not_found", "Canal não encontrado.");
-  await db.update(liveChannels).set({ teaser: text, version: channel.version + 1, updatedAt: new Date() }).where(eq(liveChannels.id, channelId));
+  await db.transaction(async (tx) => {
+    await tx.update(liveChannels).set({ teaser: text, version: channel.version + 1, updatedAt: new Date() }).where(eq(liveChannels.id, channelId));
+    await bumpDataVersion(tx, competitionId);
+  });
   return ok(undefined);
 }
 
